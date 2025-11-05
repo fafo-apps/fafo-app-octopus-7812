@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { listPublishedPosts } from "@/app/db/repositories/PostsRepository";
 import PostCard from "@/app/components/PostCard";
-import dynamic from "next/dynamic";
-
-const NewPostForm = dynamic(() => import("@/app/components/NewPostForm"), { ssr: false });
+import NewPostForm from "@/app/components/NewPostForm";
 
 export default async function Home() {
   const posts = await listPublishedPosts(24);
