@@ -3,6 +3,8 @@ import { listPublishedPosts } from "@/app/db/repositories/PostsRepository";
 import PostCard from "@/app/components/PostCard";
 import NewPostForm from "@/app/components/NewPostForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const posts = await listPublishedPosts(24);
 

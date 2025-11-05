@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "@/app/db/repositories/PostsRepository";
 
+export const dynamic = "force-dynamic";
+
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
@@ -15,8 +17,8 @@ export default async function PostPage({ params }: { params: { slug: string } })
         // eslint-disable-next-line @next/next/no-img-element
         <img src={post.cover_image_url} alt={post.title} className="mb-6 w-full rounded-xl object-cover" />
       )}
-      <article className="prose prose-zinc max-w-none">
-        <p className="text-lg text-zinc-700">{post.excerpt}</p>
+      <article className="max-w-none">
+        {post.excerpt && <p className="text-lg text-zinc-700">{post.excerpt}</p>}
         <div className="mt-4 whitespace-pre-wrap leading-7 text-zinc-800">{post.content}</div>
       </article>
     </div>
